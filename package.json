@@ -1,0 +1,13 @@
+{
+  "name": "present-clicker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "browser-sync start --server --files 'css/*.css' --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dan Leatherman <dleatherman@gmail.com>",
+  "license": "MIT"
+}
