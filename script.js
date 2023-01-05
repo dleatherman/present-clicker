@@ -127,6 +127,30 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.toneMapping = THREE.ReinhardToneMapping;
 renderer.toneMappingExposure = 3.5;
 
+
+// Game variables
+let score = 0;
+let clicks = 0;
+
+// Handle clicks on the gift
+function onDocumentMouseDown(event) {
+  event.preventDefault();
+  const mouse = new THREE.Vector2();
+  mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+  mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  const raycaster = new THREE.Raycaster();
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects([gift]);
+  if (intersects.length > 0) {
+    score++;
+    clicks++;
+    document.getElementById("score").textContent = score;
+  } else {
+    clicks++;
+  }
+}
+document.addEventListener("mousedown", onDocumentMouseDown, false);
+
 /**
  * Animate
  */
