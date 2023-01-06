@@ -112,6 +112,8 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
+controls.enableZoom = false
+controls.enablePan = false
 
 /**
  * Renderer
@@ -144,12 +146,17 @@ function onDocumentMouseDown(event) {
   if (intersects.length > 0) {
     score++;
     clicks++;
-    document.getElementById("score").textContent = score;
+    updateScore(score)
   } else {
     clicks++;
   }
 }
 document.addEventListener("mousedown", onDocumentMouseDown, false);
+
+const updateScore = (score) => {
+  if (!score) return
+  document.getElementById("score").textContent = score;
+}
 
 /**
  * Animate
@@ -163,7 +170,6 @@ const tick = () => {
 
   // Update objects
   gift.rotation.y = .5 * elapsedTime
-
   // Update Orbital Controls
   controls.update()
 
